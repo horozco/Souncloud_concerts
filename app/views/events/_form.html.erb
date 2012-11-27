@@ -1,0 +1,34 @@
+<%= simple_form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="well">
+    <%= f.input :date, :input_html => { :class => 'datepicker' } %>
+    <%= f.input :time, :label => 'Time And Duration' %>
+    <%= f.input :artist_name %>
+    <%= f.input :price %>
+    <%= f.input :full_description, :input_html =>{:rows => 15}  %>
+    
+    <%= f.input :artist_track, :input_html => { :id => 'artist' },
+                :label => 'Select Artist'  %>
+
+    <p>            
+    <select id="select">
+      <optgroup label="Tracks">
+      <option> </option>
+      </optgroup>
+    </select>
+    </p>
+
+    <%= f.submit class: "btn-primary" %>
+
+</div>  
+<% end %>

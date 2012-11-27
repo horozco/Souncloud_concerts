@@ -1,0 +1,42 @@
+<div class="hero-unit">
+  <h2>Welcome To Concerts Share App</h2>
+</div>
+
+
+<fieldset>
+  <legend>Next Events</legend>
+<%if user_session%>
+<table class="table table-striped table-hover table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Artist Name</th>
+    <th>Price</th>
+    <th>Posted By</th>
+    <th>Show Event</th>
+  </tr> 
+  <% c = 1%>  
+  <%@events.each do |event|%> 
+  <tr>
+    <td><%= c%></td>
+    <th><%=event.date%></th>
+    <th><%=event.time%></th>
+    <th><%=event.artist_name%></th>
+    <th><%=event.price%></th>
+    <th><%=event.user.full_name%></th>
+    <th><%=link_to "Show Event", event%></th>
+  </tr>
+  <% c = c + 1%>
+  <% end %>
+
+</table>
+
+</fieldset>
+
+  <br><%= link_to "New Event", new_event_path, class: "btn btn-success" %>
+<%else%> 
+  to see next events you need login
+  <p><%=link_to "Registrer", register_path, class: "btn"%>
+  <%=link_to "Log in", login_path, class: "btn btn-success"%></p>
+<%end%>
