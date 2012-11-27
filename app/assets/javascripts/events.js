@@ -11,7 +11,7 @@ $(function() {
       
       response( $.map( artists, function( item ) {
       return { 
-            value: item.full_name + ', ' + item.city + ', Tracks: ' + item.track_count
+            value: item.full_name + " Tracks: "+ item.track_count
           }
         }));
       });

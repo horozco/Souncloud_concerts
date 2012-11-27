@@ -1,6 +1,5 @@
 <fieldset>
   <legend>Event Content</legend>
-
 Posted By: <%=@event.user.full_name %> | 
   <% if current_user == @event.user%>
     <%= link_to 'Edit Event', edit_event_path(@event), class: "btn-link" %>
@@ -10,6 +9,6 @@ Posted By: <%=@event.user.full_name %> |
     <b>Artist Name: </b> <%= @event.artist_name%></p>
     <b>Time And Duration: </b> <%= @event.time%></p>
     <b>Created By: </b> <%= @event.user.full_name%></p>
+    <b>Description: </b> <%= @event.full_description%></p>
   </div>
-
 </fieldset>

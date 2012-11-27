@@ -5,7 +5,7 @@
 
 <fieldset>
   <legend>Next Events</legend>
-<%if user_session%>
+
 <table class="table table-striped table-hover table-bordered">
   <tr>
     <th>#</th>
@@ -33,10 +33,9 @@
 </table>
 
 </fieldset>
-
+<%if user_session%>
   <br><%= link_to "New Event", new_event_path, class: "btn btn-success" %>
 <%else%> 
-  to see next events you need login
   <p><%=link_to "Registrer", register_path, class: "btn"%>
   <%=link_to "Log in", login_path, class: "btn btn-success"%></p>
 <%end%>
