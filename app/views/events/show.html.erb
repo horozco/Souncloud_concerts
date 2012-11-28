@@ -1,21 +1,39 @@
-<fieldset>
-  <legend>Event Content</legend>
-  Posted By: <%=@event.user.full_name %> | 
-  <% if current_user == @event.user%>
-  <%= link_to 'Edit Event', edit_event_path(@event), class: "btn-link" %>
-  | <%= link_to 'Destroy', event_path(@event), method: :delete, data:{confirm: "Are you sure your want to delete this event?"}, class: "btn-link" %>
-  <%end%>
-  <div class = "well">
-    <p><b>Date: </b> <%= @event.date%></p>
-    <b>Artist Name: </b> <%= @event.artist_track%></p>
-    <b>Time And Duration: </b> <%= @event.time%></p>
-    <b>Created By: </b> <%= @event.user.full_name%></p>
-    <b>Description: </b> <%= @event.full_description%></p>
-  </div>
+<div class="row"> 
+  <div class = "span6">
+    <fieldset>
+      <legend>Event Content</legend>
+      Created By: <%=@event.user.full_name %> | 
+      <% if current_user == @event.user%>
+      <%= link_to 'Edit Event', edit_event_path(@event), class: "btn-link" %>
+      | <%= link_to 'Destroy', event_path(@event), method: :delete, data:{confirm: "Are you sure your want to delete this event?"}, class: "btn-link" %> 
+      <%else%>
+        
+        <%if current_user.follows.where(:follower_id => @event.user.id).count >= 1 %>
 
-  <% require "soundcloud" %>
-  <% client = Soundcloud.new(client_id: '5ba473964263fd02eec8f08732b65d4f') %>
-  <% embed_info = client.get('/oembed', url: @event.track) %>
-  <%= embed_info['html'].html_safe %>
+         <%= link_to "Unfollow", follow_path(current_user.follows.where(:follower_id => @event.user.id).first), :data => { :confirm => "Are you sure unfollow?" }, :method => :delete, class: "btn btn-warning" %>       
+          <%else%>
+                <%=link_to "Follow", follows_path(:follower_id => @event.user.id), method: :post, :class => "btn btn-primary"%>
+          <%end%>
+        <%end%>    
+      <div class = "well">
+        <p><b>Date: </b> <%= @event.date%></p>
+        <b>Artist Name: </b> <%= @event.artist_track%></p>
+        <b>Time And Duration: </b> <%= @event.time%></p>
+        <b>Description: </b> <%= @event.full_description%></p>
+      </div>
 
-</fieldset>
+      <% require "soundcloud" %>
+      <% client = Soundcloud.new(client_id: '5ba473964263fd02eec8f08732b65d4f') %>
+      <% embed_info = client.get('/oembed', url: @event.track) %>
+      <%= embed_info['html'].html_safe %>
+    </fieldset>
+  </div>  
+    <div class = "span6 test3">
+        <%if @event.event_image%>
+          <%= image_tag @event.event_image.url(:medium), class: "img-polaroid" %>
+        <%end%>
+    </div>
+
+        
+  
+</div>

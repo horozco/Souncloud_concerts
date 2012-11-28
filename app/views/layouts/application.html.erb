@@ -25,6 +25,7 @@
           </ul>
           <%if user_signed_in? %>
             <ul class = "nav pull-right">
+              <li><%=link_to "Follow Events", follow_events_path%> </li>
               <li><%=link_to current_user.full_name, edit_user_path(current_user.full_name)%> </li>
               <li><%=link_to "Log Out", logout_path%></li>
             </ul>

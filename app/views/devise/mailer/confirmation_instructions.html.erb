@@ -1,5 +1,5 @@
-<p>Welcome <%= @resource.email %>!</p>
+<p><h1>Welcome to Concerts Share <%= @resource.email %>!</h1></p>
 
 <p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to 'Confirm my account on Concerts Share', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

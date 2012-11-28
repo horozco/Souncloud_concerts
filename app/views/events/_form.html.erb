@@ -22,6 +22,9 @@
     <%= f.input :price %>
     <%= f.input :full_description, :input_html =>{:rows => 10, style: 'width: 80%'}  %>
     
+    <div class="photo">
+      <%= f.file_field :event_image%> 
+    </div>
     
 
     <%= f.submit class: "btn-primary" %>

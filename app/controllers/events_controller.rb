@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-before_filter :authenticate_user!, :only => [:new, :create, :destroy, :edit, :update]
+before_filter :authenticate_user!, :only => [:follow_index, :new, :create, :destroy, :edit, :update]
 before_filter :authenticate_same_user, :only => [:update, :destroy, :edit]
 
   def authenticate_same_user
@@ -19,6 +19,13 @@ before_filter :authenticate_same_user, :only => [:update, :destroy, :edit]
     end
   end
 
+  def follow_index
+    @events = []
+    current_user.follows.each do |follow|
+      @events += Event.where(:user_id => follow.follower_id)
+    end
+  end
+
   def show
     @event = Event.find(params[:id])
   end
@@ -33,6 +40,16 @@ before_filter :authenticate_same_user, :only => [:update, :destroy, :edit]
     @event = Event.new(params[:event])
     @event.user = current_user
     if @event.save
+      @user_list = []
+      @follows = Follow.where(:follower_id => @event.user.id)
+      @follows.each do |follow|
+          @user_list += User.where(:id => follow.user_id) 
+      end
+     
+      @user_list.each do |user|
+        EventMailer.new_event_notify(user, @event).deliver
+      end
+
       redirect_to @event, notice: ':) event was created.'
       else
       flash[:error] = "There were some errors creating your event. :("

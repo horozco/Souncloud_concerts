@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127205259) do
+ActiveRecord::Schema.define(:version => 20121128161456) do
 
   create_table "events", :force => true do |t|
     t.string   "date"
@@ -19,16 +19,27 @@ ActiveRecord::Schema.define(:version => 20121127205259) do
     t.string   "artist_name"
     t.float    "price"
     t.text     "full_description"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.integer  "user_id"
     t.string   "artist_track"
     t.string   "track"
+    t.string   "event_image_file_name"
+    t.string   "event_image_content_type"
+    t.integer  "event_image_file_size"
+    t.datetime "event_image_updated_at"
   end
 
   add_index "events", ["artist_track"], :name => "index_events_on_artist_track"
   add_index "events", ["track"], :name => "index_events_on_track"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
+  create_table "follows", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "full_name"
