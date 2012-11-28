@@ -12,6 +12,19 @@
  *= require_tree .
  */
 body{
-  padding-top: 50px;
+  padding-top: 70px;
   padding-bottom: 50px;
+}
+
+.test{
+	padding-top: 50px;
+}
+
+
+.test2{
+	padding-top: 30px;
+}
+
+.test3{
+	padding-top: 60px;
 }

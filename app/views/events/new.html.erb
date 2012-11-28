@@ -1,7 +1,17 @@
-<div class="Well">
-  <h1>Create a New Event</h1>
+<div class="row">
+  <div class = "span6">
+	<div class="Well">
+	  <fieldset>
+	  <legend>Create a New Event</legend><br>
+	</div>
+
+	<%= render 'form' %>
+
+	<%= link_to 'Back', events_path, class: "btn" %>
+	</div>
+
+  <div class = "span6 test3">
+    <% image_tag("Concert-1.jpg") %>
+    <img src="/Concert-1.jpg" alt="Icon" class="img-rounded"/>
+  </div>
 </div>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', events_path, class: "btn" %>

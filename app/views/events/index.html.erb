@@ -2,9 +2,8 @@
   <h2>Welcome To Concerts Share App</h2>
 </div>
 
-
 <fieldset>
-  <legend>Next Events</legend>
+  <legend>Next Events</legend><br>
 
 <table class="table table-striped table-hover table-bordered">
   <tr>
@@ -14,18 +13,25 @@
     <th>Artist Name</th>
     <th>Price</th>
     <th>Posted By</th>
-    <th>Show Event</th>
+    <th>Actions</th>
   </tr> 
   <% c = 1%>  
   <%@events.each do |event|%> 
   <tr>
     <td><%= c%></td>
-    <th><%=event.date%></th>
-    <th><%=event.time%></th>
-    <th><%=event.artist_name%></th>
-    <th><%=event.price%></th>
-    <th><%=event.user.full_name%></th>
-    <th><%=link_to "Show Event", event%></th>
+    <td><%=event.date%></td>
+    <td><%=event.time%></td>
+    <td><%=event.artist_track%></td>
+    <td><%=event.price%></td>
+    <td><%=event.user.full_name%></td>
+    <td><%=link_to "Show Event", event%>
+    <% if current_user == event.user%>
+        | <%= link_to 'Edit', edit_event_path(event), class: "btn-link" %>
+        | <%= link_to 'Destroy', event_path(event), method: :delete, data:{confirm: "Are you sure your want to delete this event?"}, class: "btn-link" %>
+    <%end%>
+
+    </td>
+
   </tr>
   <% c = c + 1%>
   <% end %>

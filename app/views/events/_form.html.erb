@@ -13,20 +13,16 @@
   <div class="well">
     <%= f.input :date, :input_html => { :class => 'datepicker' } %>
     <%= f.input :time, :label => 'Time And Duration' %>
-    <%= f.input :artist_name %>
-    <%= f.input :price %>
-    <%= f.input :full_description, :input_html =>{:rows => 15}  %>
-    
+
     <%= f.input :artist_track, :input_html => { :id => 'artist' },
                 :label => 'Select Artist'  %>
 
-    <p>            
-    <select id="select">
-      <optgroup label="Tracks">
-      <option> </option>
-      </optgroup>
-    </select>
-    </p>
+    <%= f.input :track, collection: [@event.track], :prompt => "Select the track", input_html: { id: 'track' } %>
+    
+    <%= f.input :price %>
+    <%= f.input :full_description, :input_html =>{:rows => 10, style: 'width: 80%'}  %>
+    
+    
 
     <%= f.submit class: "btn-primary" %>
 
