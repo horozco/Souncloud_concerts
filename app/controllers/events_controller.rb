@@ -12,7 +12,7 @@ before_filter :authenticate_same_user, :only => [:update, :destroy, :edit]
   end
 
   def index
-    @events = Event.order("created_at DESC")
+    @events = Event.order("created_at DESC").page(params[:page]).per(6)
     respond_to do |format|
       format.html 
       format.js

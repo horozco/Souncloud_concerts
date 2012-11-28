@@ -16,11 +16,16 @@
     <th>Posted By</th>
     <th>Actions</th>
   </tr> 
-  <% c = 1%>  
+  <div class="well">
+    <b><%= paginate @events %></b>
+  </div>
+  <% c = 1%>
   <%@events.each do |event|%> 
   <tr>
     <td><%= c%></td>
-    <td><%= image_tag event.event_image.url(:thumb), class: "img-polaroid" %></td>
+    <%if event.event_image%>
+      <td><%= image_tag event.event_image.url(:thumb), class: "img-polaroid" %></td>
+    <%end%>
     <td><%=event.date%></td>
     <td><%=event.time%></td>
     <td><%=event.artist_track%></td>

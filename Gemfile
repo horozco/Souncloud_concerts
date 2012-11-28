@@ -9,6 +9,8 @@ gem 'rails', '3.2.7'
 
 gem 'pg', '0.14.1'
 
+gem 'kaminari'
+
 gem 'simple_form'
 
 gem 'devise','2.1.2'
