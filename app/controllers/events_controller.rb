@@ -41,7 +41,9 @@ before_filter :authenticate_same_user, :only => [:update, :destroy, :edit]
     @event.user = current_user
     if @event.save
       @user_list = []
+      
       @follows = Follow.where(:follower_id => @event.user.id)
+      
       @follows.each do |follow|
           @user_list += User.where(:id => follow.user_id) 
       end

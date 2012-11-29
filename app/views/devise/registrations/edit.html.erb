@@ -40,6 +40,22 @@
       </li>
       <% end %>  
     </ul>
+    <h2>You Follow to:</h2>
+    <ul>
+    <%@user_list = []%>
+      
+    <% @follows = Follow.where(:follower_id => @user.id)%>
+      
+    <%@follows.each do |follow|%>
+          <%@user_list += User.where(:id => follow.user_id)%> 
+      <%end%>
+
+    <% @user_list.each do |follow| %>
+      <li>
+        <%= h follow.full_name %>
+      </li>
+      <% end %>  
+    </ul>
   </div>  
   </fieldset>
   </div>

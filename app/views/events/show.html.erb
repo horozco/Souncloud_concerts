@@ -3,6 +3,7 @@
     <fieldset>
       <legend>Event Content</legend>
       Created By: <%=@event.user.full_name %> | 
+      <%if user_signed_in? %>
       <% if current_user == @event.user%>
       <%= link_to 'Edit Event', edit_event_path(@event), class: "btn-link" %>
       | <%= link_to 'Destroy', event_path(@event), method: :delete, data:{confirm: "Are you sure your want to delete this event?"}, class: "btn-link" %> 
@@ -15,6 +16,7 @@
                 <%=link_to "Follow", follows_path(:follower_id => @event.user.id), method: :post, :class => "btn btn-primary"%>
           <%end%>
         <%end%>    
+    <%end%>    
       <div class = "well">
         <p><b>Date: </b> <%= @event.date%></p>
         <b>Artist Name: </b> <%= @event.artist_track%></p>
