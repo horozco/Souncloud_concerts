@@ -19,6 +19,17 @@ gem 'soundcloud', '0.3.0'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
+end
+
+group :test do
+  gem 'simplecov', :require => false
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+  # gem 'database_cleaner'   # might need it in the future (https://github.com/bmabey/database_cleaner)
+end
+
 
 # Gems used only for assets and not required
 # in production environments by default.
